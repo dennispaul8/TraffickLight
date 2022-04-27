@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        <style>
+                    .light1{
+                        height: 100px;
+                        width: 100px;
+                        border-radius: 100%;
+                        border: 1px solid black;
+                    }
+
+                    .box{
+                        height: 350px;
+                        width: 105px;
+                        border: 1px solid black;
+                        background-color: black;
+                    }
+        </style>
+
+            <div class="box">
+                <div class="light1" id="first" style="background-color: white;"></div>
+                <div class="light1" id="second" style="background-color: white;"></div>
+                <div class="light1" id="third" style="background-color: white;"></div>
+            </div>
+
+                <h1>Countdown: <span id="timer">00</span></h1> 
+                <!-- <button onclick="startTimer()">start</button> -->
+</body>
+</html>
+<script>
+
+            let first = document.getElementById('first');
+            let second = document.getElementById('second');
+            let third = document.getElementById('third');
+            let timer = document.getElementById('timer');
+            let time = 15;
+            let status = 'stop'
+
+            setInterval(startTraffic, 1000)
+            setLight()
+
+
+            function startTraffic(params) {
+                      timer.innerHTML = time;
+
+                      if (time == 0 && status == 'go') {
+                          setStop()
+                            status = 'stop'
+                      }
+
+                      else if(time == 0 && status == 'stop'){
+                            setGo()
+                            status = 'go'
+                      }
+
+                      else if (time > 0 && time <= 5 && status == 'stop'){
+                          setReady()
+                      }
+                      restartTimerIfZero();
+                       time--;
+                    }
+
+            function restartTimerIfZero(params) {
+                if (time == 0) {
+                    time = 15
+                }
+            }
+
+            function setLight(params) {
+                if(status == 'go') setGo();
+                if(status == 'stop') setStop();
+                if(status == 'ready') setReady();
+            }
+
+            function setGo(params) {
+                first.style.backgroundColor = 'white'
+                second.style.backgroundColor = 'white'
+                third.style.backgroundColor = 'green'
+            }
+
+            function setReady(params) {
+                first.style.backgroundColor = 'white'
+                second.style.backgroundColor = 'yellow'
+                third.style.backgroundColor = 'white'
+            }
+
+            function setStop(params) {
+                first.style.backgroundColor = 'red'
+                second.style.backgroundColor = 'white'
+                third.style.backgroundColor = 'white'
+            }
+
+</script>
